@@ -2,7 +2,17 @@
 This program takes two inputs or more and check how much percent they are simmilar according to some rules
 and hence checks the plagiarism
 '''
-#def filter(file1):
+def filter(file1):
+    '''
+    Take one list as input
+    removes special characters from the end including apostrophe s
+    returns the new list with edited words
+    '''
+    
+    tmp = []
+    for word in file1:
+        tmp.append(word.strip(" !@#$%^&*()-_+={}[]|\\:;'<>?,./\"''s'"))
+    return tmp
 
 #for increasing the score
 #def updateScore():
@@ -35,6 +45,11 @@ def prints(file2):
 def parse(infile1, infile2):
     file1 = infile1.read().split()
     file2 = infile2.read().split()
+    
+    #for filtering --> removing special characters from the end of the word
+    file1 = filter(file1)
+    file2 = filter(file2)
+    
     #for storing verbs of file1 and file2
     verb1=[]
     verb2=[]
