@@ -53,7 +53,7 @@ def parse(infile1, infile2):
     #for storing verbs of file1 and file2
     verb1=[]
     verb2=[]
-    verb = open("Verb.txt")
+    verb = open("Data/Verb.txt")
     verb = verb.read().split() #for taking the verb file
     for word in file1:
         if word in verb:
