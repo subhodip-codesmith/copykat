@@ -53,7 +53,7 @@ def parse(infile1, infile2):
     #for storing verbs of file1 and file2
     verb1=[]
     verb2=[]
-    verb = open("Data/Verb.txt")
+    verb = open("Data/Verb")
     verb = verb.read().split() #for taking the verb file
     for word in file1:
         if word in verb:
@@ -65,9 +65,29 @@ def parse(infile1, infile2):
     
     
     #for storing adjectives of file1 and file2
-    'to be implemented'
+    adjective1=[]
+    adjective2=[]
+    adjective = open("Data/adjective")
+    adjective = adjective.read().split() #for taking the adjective file
+    for word in file1:
+        if word in adjective:
+            adjective1.append(word.lower())
+    for word in file2:
+        if word in adjective:
+                adjective2.append(word.lower())
+                
+    
     #for storing adverbs of file1 and file2
-    'to be implemented'
+    adverb1=[]
+    adverb2=[]
+    adverb = open("Data/adverb")
+    adverb = adverb.read().split() #for taking the adverb file
+    for word in file1:
+        if word in adverb:
+            adverb1.append(word.lower())
+    for word in file2:
+        if word in adverb:
+                adverb2.append(word.lower())
     
     #for storing pronoun of file1 and file2
     'to be implemented'
@@ -78,9 +98,10 @@ def parse(infile1, infile2):
     #for storing preposition of file1 and file2
     'to be implemented'
     
-    #checking verb groups for increasing the score
+    #checking verb,adjectives,adverbs groups for increasing the score
     check(verb1, verb2)
-    
+    check(adjective1, adjective2)
+    check(adverb1, adverb2)
     
     prints(file2)
     
