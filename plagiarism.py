@@ -8,13 +8,30 @@ and hence checks the plagiarism
 #def updateScore():
     
     
+    
 #for checking the matched words
 def check(group1, group2):
     '''This function takes two arguments goup1 and group 2 
     and checks how many words are matching exactly and how many are matching partially
     '''
-  for word in group1:
-        
+    global score
+    
+    #for checking whether word of group1(original) is present on group2 if present increase the score and remove that word from group2
+    for word in group1:
+        if word in group2:
+            score += 1
+            group2.remove(word)
+         
+      
+      
+def prints(file2):
+    '''
+    prints the score of the copied context if more then score will be more 
+    if less copied then score will be less
+    '''
+    print "%d words are copied out of %d number of words" % (score, len(file2))
+    
+
 def parse(infile1, infile2):
     file1 = infile1.read().split()
     file2 = infile2.read().split()
@@ -22,13 +39,15 @@ def parse(infile1, infile2):
     verb1=[]
     verb2=[]
     verb = open("Verb.txt")
-    verb = verb.read().split('\n') #for taking the verb file
+    verb = verb.read().split() #for taking the verb file
     for word in file1:
         if word in verb:
             verb1.append(word.lower())
     for word in file2:
         if word in verb:
                 verb2.append(word.lower())
+                
+    
     
     #for storing adjectives of file1 and file2
     'to be implemented'
@@ -43,13 +62,16 @@ def parse(infile1, infile2):
     
     #for storing preposition of file1 and file2
     'to be implemented'
-
+    
+    #checking verb groups for increasing the score
     check(verb1, verb2)
     
     
-    
+    prints(file2)
     
 
-infile1 = open(raw_input('Enter the first file name : '), 'r')
+infile1 = open(raw_input('Enter the first(original) file name : '), 'r')
 infile2 = open(raw_input('Enter the second file name : '), 'r')
+score = 0
 parse(infile1, infile2)
+
