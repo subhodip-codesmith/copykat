@@ -17,7 +17,22 @@ def filter(file1):
 #for increasing the score
 #def updateScore():
     
-    
+#for checking the word is a synonym copy or not
+def chksynonym(word, group2):
+    file = open("Data/synonym")
+    i=0
+    line = file.readline().split()
+    while (line):
+        if line[0] == word:
+            tmp = line[2:]
+            for i in range(0, len(tmp)-1):
+                wrd = tmp[i]
+                if wrd in group2:
+                    score += 0.8    #score will be increased 0.8 times if it matches with synonym
+                    group2.remove(wrd)
+        
+        line = file.readline().split()
+    return group2
     
 #for checking the matched words
 def check(group1, group2):
@@ -31,7 +46,9 @@ def check(group1, group2):
         if word in group2:
             score += 1
             group2.remove(word)
-         
+        else:
+            #if word is exactly not matched then check 
+            group2 = chksynonym(word, group2)
       
       
 def prints(file2):
