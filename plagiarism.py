@@ -13,12 +13,14 @@ def filter(file1):
     for word in file1:
         tmp.append(word.strip(" !@#$%^&*()-_+={}[]|\\:;'<>?,./\"''s'"))
     return tmp
-
-#for increasing the score
-#def updateScore():
     
 #for checking the word is a synonym copy or not
 def chksynonym(word, group2):
+    '''
+    This function takes two inputs word and group2 searches all the synonym of word in group2
+    return modified group2
+    '''
+    global score
     file = open("Data/synonym")
     i=0
     line = file.readline().split()
@@ -29,8 +31,7 @@ def chksynonym(word, group2):
                 wrd = tmp[i]
                 if wrd in group2:
                     score += 0.8    #score will be increased 0.8 times if it matches with synonym
-                    group2.remove(wrd)
-        
+                    group2.remove(wrd)        
         line = file.readline().split()
     return group2
     
@@ -47,7 +48,7 @@ def check(group1, group2):
             score += 1
             group2.remove(word)
         else:
-            #if word is exactly not matched then check 
+            #if word is exactly not matched then check synonym
             group2 = chksynonym(word, group2)
       
       
@@ -56,7 +57,7 @@ def prints(file2):
     prints the score of the copied context if more then score will be more 
     if less copied then score will be less
     '''
-    print "%d words are copied out of %d number of words" % (score, len(file2))
+    print "Score of copied text is %d.\nTotal number of words : %d" % (score,len(file2))
     
 
 def parse(infile1, infile2):
